@@ -6,40 +6,39 @@ class Node{
 	public:
 		int data;
 		Node* next;
-		
-	Node(int x){
-		this->data = x;
-		this->next =NULL;
+	Node(int data){
+		this->data = data;
+		this->next = NULL;
 	}
-	
 };
-void insertAtHead(Node* &head,int data){
-	
+
+void insertAtHead(Node* &head, int data){
+//	create new node
 	Node* temp = new Node(data);
 	temp->next = head;
-	head= temp;
-	
-	
+	head = temp;
 }
 
-void insertAtTail(Node* &tail, int data){
+void insertAtTail(Node* &tail,int data){
 	Node* temp = new Node(data);
-	tail->next= temp;
-	tail = temp;
+	tail->next = temp;
+	tail =temp;
 }
+
 
 void insertAtMiddle(Node* &tail,Node* &head,int position, int data){
-	if(position==1){
+	
+  	if(position==1){
 		insertAtHead(head,data);
 		return;
 		
 	}
 	
-
-	Node* temp = head;
+	 Node* temp = head;
+	 
 	
-
-	int count = 1;
+	 	
+		int count = 1;
 	
 //	
 	while(count<position-1){
@@ -49,8 +48,7 @@ void insertAtMiddle(Node* &tail,Node* &head,int position, int data){
 		Node* nodeToInsert = new Node(data);
 		nodeToInsert->next = temp->next;
 		temp->next = nodeToInsert;
-		
-		
+	
 		if(temp->next ==NULL){
 		insertAtTail(tail,data);
 		return;
@@ -58,33 +56,33 @@ void insertAtMiddle(Node* &tail,Node* &head,int position, int data){
 	
 }
 
-
-//void deleteNode(int position, Node* &head){
-//	
-//}
-
 void display(Node* &head){
+	
 	Node* temp = head;
-	while(temp!=NULL){
+	while(temp !=NULL){
 		cout<<temp->data<<" ";
 		temp = temp->next;
-
 	}
-	cout<<endl;
+cout<<endl;
 }
 
-int main(){
-	Node* node1 = new Node(12);
 
+
+
+int main(){
+	Node* node1 = new Node(5);
+	
 	Node* head = node1;
-	Node* tail =node1;
-	insertAtHead(head,23);
-//	display(head);
-	insertAtTail(tail,15);
-//	display(head);
+	Node* tail = node1;
 	
-	insertAtMiddle(tail,head,3,53);
-	display(head);
+	insertAtHead(head,55);
+//	display(head);
+    insertAtTail(tail,3);
+//display(head);
+    	insertAtMiddle(tail,head,3,53);
+         display(head);
+//cout<<"Tail :"<<tail->data<<endl;
+//cout<<"Head :"<<head->data<<endl;
 	
-	return 0;	
+	return 0;
 }
