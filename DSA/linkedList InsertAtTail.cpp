@@ -12,6 +12,17 @@ class Node{
 		this->next =NULL;
 	}
 	
+//	
+
+//WHy we use destructor????
+    ~Node(){
+       int value = this->data;
+       if(this->next !=NULL){
+       	delete next;
+       	this->next=NULL;	
+	   }
+	}
+	
 };
 void insertAtHead(Node* &head,int data){
 	
@@ -38,10 +49,8 @@ void insertAtMiddle(Node* &tail,Node* &head,int position, int data){
 
 	Node* temp = head;
 	
-
 	int count = 1;
 	
-//	
 	while(count<position-1){
 		temp = temp->next;
 		count++;
@@ -59,9 +68,37 @@ void insertAtMiddle(Node* &tail,Node* &head,int position, int data){
 }
 
 
-//void deleteNode(int position, Node* &head){
-//	
-//}
+void deleteNode(int position, Node* &head){
+	
+	if(position==1){
+		Node* curr = head;
+		head = head->next;
+		curr->next = NULL;
+		delete curr;
+		
+	}
+	
+	else{
+		Node* curr = head;
+		Node* per = NULL;
+		int count = 1;
+		while(count<position){
+			per=curr;
+			curr= curr->next;
+			count++;
+		}
+		per->next = curr->next;
+		curr -> next = NULL;
+		delete curr;
+		
+		
+		
+	}
+	
+	
+	
+	
+}
 
 void display(Node* &head){
 	Node* temp = head;
@@ -84,6 +121,9 @@ int main(){
 //	display(head);
 	
 	insertAtMiddle(tail,head,3,53);
+//	display(head);
+
+	deleteNode(1,head);
 	display(head);
 	
 	return 0;	
